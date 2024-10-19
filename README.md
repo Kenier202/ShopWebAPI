@@ -8,8 +8,8 @@ Para obtener una copia del proyecto se debera ingresar al repositorio localizado
 Para una instalacion local se debera de incluir el proyecto en nuestro editor de codigo de preferencia y inicializar la depuracion mediante HTTPS 
 
 ## Desarrollo
-C#
-.NET
+- C#
+- .NET
 
 ## Autor
-Kenier Morales
+- Kenier Morales
