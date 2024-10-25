@@ -11,6 +11,8 @@ namespace ShopWebAPI.Models
         public int IdProduct { get; set; }
         public string ProductName { get; set; }
         public double ProductPrice { get; set; }
+        public string ProductCategoryId { get; set; }
+        [ForeignKey(nameof(ProductCategoryId))]
         public string ProductCategory { get; set; }
         public string ProductDescription { get; set; }
         public int StockQuantity { get; set; }
