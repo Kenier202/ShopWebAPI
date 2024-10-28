@@ -9,6 +9,7 @@ namespace ShopWebAPI.Repositories
         public Task AddProduct (TEntity product);
         public Task UpdateProduct (TEntity product);
         public Task DeleteProduct (TEntity product);
+        Task save();
 
     }
 }
