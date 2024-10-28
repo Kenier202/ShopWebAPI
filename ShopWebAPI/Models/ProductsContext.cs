@@ -7,9 +7,9 @@ namespace ShopWebAPI.Models
         public ProductsContext(DbContextOptions<ProductsContext> options) : base(options) { }
 
 
-        DbSet<Products> Products { get; set; }
-        DbSet<ProductCategory> ProductCategories { get; set; }
-        DbSet<State_product> StateProducts { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<State_product> StateProducts { get; set; }
         
     }
 }

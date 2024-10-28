@@ -1,42 +1,28 @@
-﻿using ShopWebAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopWebAPI.Models;
 using ShopWebAPI.Repositories;
 
 namespace ShopWebAPI.Services
 {
     public class RepositoryProducts : ShopWebRepository<Products>
     {
-        private ProductCategory dbContext;
+         ProductsContext _dbContext;
 
-        public RepositoryProducts(ProductCategory dbContext)
+        public RepositoryProducts(ProductsContext dbContext)
         {
-            this.dbContext = dbContext;
-        }
-
-        public Task<IEnumerable<Products>> getAllProducts()
-        {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
         }
 
-        public Task<Products> GetProductById()
-        {
-            throw new NotImplementedException();
-        }
-        public Task AddProduct(Products product)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<Products>> getAllProducts() =>  await _dbContext.Products.ToListAsync();
+        public async Task<Products> GetProductById(Products IdProduct) => await _dbContext.Products.FindAsync(IdProduct);
+        public async Task AddProduct(Products product) =>  _dbContext.Products.Add(product);
         public Task UpdateProduct(Products product)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteProduct(Products product)
-        {
-            throw new NotImplementedException();
-        }
-        public Task save()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task DeleteProduct(Products product) =>  _dbContext.Remove(product);
+        public async Task save() => await _dbContext.SaveChangesAsync();
+
     }
 }
