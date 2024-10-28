@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShopWebAPI.Models;
+using ShopWebAPI.Repositories;
+using ShopWebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,8 @@ builder.Services.AddDbContext<ProductsContext>(
     c => { c.UseSqlServer(builder.Configuration.GetConnectionString("ProductConnection"));
 });
 
+//RepositoryProducts
+builder.Services.AddScoped<IProductsRepository<Products>,RepositoryProducts>();
 
 
 builder.Services.AddControllers();

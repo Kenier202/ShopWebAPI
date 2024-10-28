@@ -4,7 +4,7 @@ using ShopWebAPI.Repositories;
 
 namespace ShopWebAPI.Services
 {
-    public class RepositoryProducts : ShopWebRepository<Products>
+    public class RepositoryProducts : IProductsRepository<Products>
     {
          ProductsContext _dbContext;
 

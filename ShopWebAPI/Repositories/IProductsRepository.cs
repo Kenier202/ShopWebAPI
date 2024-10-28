@@ -2,7 +2,7 @@
 
 namespace ShopWebAPI.Repositories
 {
-    public interface ShopWebRepository<TEntity>
+    public interface IProductsRepository<TEntity>
     {
         public Task<IEnumerable<TEntity>> getAllProducts();
         public Task<TEntity> GetProductById(TEntity IdProduct);
