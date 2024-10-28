@@ -49,7 +49,3 @@ Las contribuciones son bienvenidas. Si deseas mejorar el proyecto, por favor, si
 ## Licencia 📄
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
-
----
-
-Esta versión tiene una estructura más detallada y sigue una convención clara para el formato, similar a la de **Countrys_SAP**.
