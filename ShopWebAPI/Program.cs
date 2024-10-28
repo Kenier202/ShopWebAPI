@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ShopWebAPI.Interfaces;
 using ShopWebAPI.Models;
 using ShopWebAPI.Repositories;
 using ShopWebAPI.Services;
@@ -15,6 +16,8 @@ builder.Services.AddDbContext<ProductsContext>(
 //RepositoryProducts
 builder.Services.AddScoped<IProductsRepository<Products>,RepositoryProducts>();
 
+//RepositoryProducsService
+builder.Services.AddScoped<IProductsService,ProductsService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
