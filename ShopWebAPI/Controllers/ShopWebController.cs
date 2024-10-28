@@ -19,7 +19,10 @@ namespace ShopWebAPI.Controllers
         [HttpGet]
         public async Task<IEnumerable<Products>> getProducts() => await _productsService.GetProducts();
 
-   
+        [HttpGet("{id}")]
+        public async Task<ActionResult> getById(int id ) => 
+            await _productsService.GetProductsById(id) is var product && product == null ? NotFound() : Ok(product);
+
 
     }
 }
