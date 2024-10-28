@@ -5,14 +5,11 @@ namespace ShopWebAPI.Services
 {
     public class RepositoryProducts : ShopWebRepository<Products>
     {
-        public Task AddProduct(Products product)
-        {
-            throw new NotImplementedException();
-        }
+        private ProductCategory dbContext;
 
-        public Task DeleteProduct(Products product)
+        public RepositoryProducts(ProductCategory dbContext)
         {
-            throw new NotImplementedException();
+            this.dbContext = dbContext;
         }
 
         public Task<IEnumerable<Products>> getAllProducts()
@@ -24,13 +21,20 @@ namespace ShopWebAPI.Services
         {
             throw new NotImplementedException();
         }
-
-        public Task save()
+        public Task AddProduct(Products product)
+        {
+            throw new NotImplementedException();
+        }
+        public Task UpdateProduct(Products product)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateProduct(Products product)
+        public Task DeleteProduct(Products product)
+        {
+            throw new NotImplementedException();
+        }
+        public Task save()
         {
             throw new NotImplementedException();
         }
