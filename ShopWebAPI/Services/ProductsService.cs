@@ -19,19 +19,36 @@ namespace ShopWebAPI.Services
 
             return products;
         }
+
+        public async Task<ShopWebDTO> GetProductsById(int id)
+        {
+            var product = await _repositoryProducts.GetProductById(id);
+
+            if (product == null) return null;
+
+            var productDTO = new ShopWebDTO() 
+            {
+                IdProduct = product.IdProduct,
+                ProductName = product.ProductName,
+                ProductPrice = product.ProductPrice,
+                ProductCategory = product.ProductCategory,
+                ProductDescription = product.ProductDescription,
+                StockQuantity = product.StockQuantity,
+                IsActive = product.StateProductId,
+                CreatedDate = product.CreatedDate,
+                ModifiedDate = product.ModifiedDate,
+            };
+
+            return productDTO;
+        }
+
+
         public Task<ShopWebDTO> AddProduct(ShopWebInsertDTO product)
         {
             throw new NotImplementedException();
         }
 
         public Task<Products> DeleteProduct(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-        public Task<Products> GetProductsById(int id)
         {
             throw new NotImplementedException();
         }

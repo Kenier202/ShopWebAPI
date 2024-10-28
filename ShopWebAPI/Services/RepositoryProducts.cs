@@ -14,7 +14,7 @@ namespace ShopWebAPI.Services
         }
 
         public async Task<IEnumerable<Products>> getAllProducts() =>  await _dbContext.Products.ToListAsync();
-        public async Task<Products> GetProductById(Products IdProduct) => await _dbContext.Products.FindAsync(IdProduct);
+        public async Task<Products> GetProductById(int IdProduct) => await _dbContext.Products.FindAsync(IdProduct);
         public async Task AddProduct(Products product) =>  _dbContext.Products.Add(product);
         public Task UpdateProduct(Products product)
         {

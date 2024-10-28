@@ -8,7 +8,7 @@ namespace ShopWebAPI.Interfaces
         //fetch all products from repository
         Task<IEnumerable<Products>> GetProducts();
         //fetch one product
-        Task<Products> GetProductsById(int id);
+        Task<ShopWebDTO> GetProductsById(int id);
         //add product
         Task<ShopWebDTO> AddProduct (ShopWebInsertDTO product);
         //update product
