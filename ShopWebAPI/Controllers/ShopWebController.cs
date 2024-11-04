@@ -17,7 +17,7 @@ namespace ShopWebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Products>> getProducts() => await _productsService.GetProducts();
+        public async Task<ActionResult> getProducts() => await _productsService.GetProducts() is var product && product == null ? NotFound() : Ok(product);
 
         [HttpGet("{id}")]
         public async Task<ActionResult> getById(int id ) => 
@@ -25,8 +25,8 @@ namespace ShopWebAPI.Controllers
 
         [HttpPost]
 
-        public async Task<ActionResult> addProduct(ShopWebInsertDTO product) =>
-            await _productsService.AddProduct(product) is var addProduct && addProduct == null ? NotFound() : Ok(product);
+        public async Task<ActionResult> addProduct(ShopWebInsertDTO productAdd) =>
+            await _productsService.AddProduct(productAdd) is var addProduct && addProduct == null ? NotFound() : Ok(addProduct);
 
 
 
