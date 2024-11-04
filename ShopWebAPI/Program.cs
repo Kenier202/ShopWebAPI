@@ -19,7 +19,7 @@ builder.Services.AddScoped<IProductsRepository<Products>,RepositoryProducts>();
 //RepositoryProducsService
 builder.Services.AddScoped<IProductsService,ProductsService>();
 
-builder.Services.AddControllers().AddJsonOptions(options =>
+ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
  

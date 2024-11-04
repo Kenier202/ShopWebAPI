@@ -13,7 +13,11 @@ namespace ShopWebAPI.Services
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<Products>> getAllProducts() =>  await _dbContext.Products.ToListAsync();
+        public async Task<IEnumerable<Products>> getAllProducts() =>
+            await _dbContext.Products
+                .Include(p => p.ProductCategory)  // Asegúrate de que se incluye el Category
+                .Include(p => p.StateProduct)      // Asegúrate de que se incluye el State
+                .ToListAsync();
 
 
         public async Task<Products> GetProductById(int IdProduct) => await _dbContext.Products.FindAsync(IdProduct);

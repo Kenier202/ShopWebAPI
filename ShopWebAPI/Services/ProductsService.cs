@@ -18,7 +18,7 @@ namespace ShopWebAPI.Services
             var products = await _repositoryProducts.getAllProducts();
             if (products == null) return null ;
 
-            return products.Select(p => new Products
+            var productos = products.Select(p => new Products
             {
                 IdProduct = p.IdProduct,
                 ProductName = p.ProductName,
@@ -30,6 +30,8 @@ namespace ShopWebAPI.Services
                 CreatedDate = p.CreatedDate,
                 ModifiedDate = p.ModifiedDate
             });
+
+            return productos;
         }
 
         public async Task<ShopWebDTO> GetProductsById(int id)
