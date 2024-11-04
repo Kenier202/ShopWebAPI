@@ -1,4 +1,6 @@
-﻿namespace ShopWebAPI.DTOs
+﻿using ShopWebAPI.Models;
+
+namespace ShopWebAPI.DTOs
 {
     public class ShopWebUpdateDTO
     {
@@ -7,6 +9,6 @@
         public string ProductCategory { get; set; }
         public string ProductDescription { get; set; }
         public int StockQuantity { get; set; }
-        public bool IsActive { get; set; }
+        public int StateProduct { get; set; }
     }
 }
