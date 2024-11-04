@@ -13,9 +13,10 @@ namespace ShopWebAPI.Services
             _repositoryProducts = repositoryProducts;
         }
 
-        public Task<IEnumerable<Products>> GetProducts()
+        public async Task<IEnumerable<Products>> GetProducts()
         {
-            var products = _repositoryProducts.getAllProducts();
+            var products = await _repositoryProducts.getAllProducts();
+            if (products == null) return null ;
 
             return products;
         }
@@ -31,10 +32,10 @@ namespace ShopWebAPI.Services
                 IdProduct = product.IdProduct,
                 ProductName = product.ProductName,
                 ProductPrice = product.ProductPrice,
-                ProductCategory = product.ProductCategory,
+                ProductCategory = product.ProductCategoryId,
                 ProductDescription = product.ProductDescription,
                 StockQuantity = product.StockQuantity,
-                IsActive = product.StateProductId,
+                StateProduct = product.StateProductId,
                 CreatedDate = product.CreatedDate,
                 ModifiedDate = product.ModifiedDate,
             };
@@ -52,13 +53,12 @@ namespace ShopWebAPI.Services
             {
                 ProductName = product.ProductName,
                 ProductPrice = product.ProductPrice,
-                ProductCategory = product.ProductCategory,
                 ProductDescription = product.ProductDescription,
                 StockQuantity = product.StockQuantity,
-                StateProductId = product.IsActive,
+                StateProductId = product.StateProductId,
                 CreatedDate = DateTime.Now,
                 ModifiedDate= DateTime.Now,
-                ProductCategoryId = product.ProductCategory
+                ProductCategoryId = Convert.ToInt32(product.ProductCategoryId)
             };
 
             await _repositoryProducts.AddProduct(productDb);
@@ -68,11 +68,11 @@ namespace ShopWebAPI.Services
                 IdProduct = productDb.IdProduct,
                 ProductName = productDb.ProductName,
                 ProductPrice = productDb.ProductPrice,
-                ProductCategory = productDb.ProductCategory,
+                ProductCategory = productDb.ProductCategoryId,
                 ProductDescription = productDb.ProductDescription,
                 StockQuantity = productDb.StockQuantity,
                 CreatedDate = productDb.CreatedDate,
-                IsActive = 1,
+                StateProduct = productDb.StateProductId,
                 ModifiedDate = productDb.ModifiedDate,
             };
             return productShopWebDTO;
