@@ -14,8 +14,14 @@ namespace ShopWebAPI.Services
         }
 
         public async Task<IEnumerable<Products>> getAllProducts() =>  await _dbContext.Products.ToListAsync();
+
+
         public async Task<Products> GetProductById(int IdProduct) => await _dbContext.Products.FindAsync(IdProduct);
-        public async Task AddProduct(Products product) =>  _dbContext.Products.Add(product);
+        public async Task AddProduct(Products product)
+        {
+            _dbContext.Products.Add(product);
+            await _dbContext.SaveChangesAsync();  // Guarda los cambios en la base de datos de manera asíncrona
+        }
         public Task UpdateProduct(Products product)
         {
             throw new NotImplementedException();
