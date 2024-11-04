@@ -23,6 +23,12 @@ namespace ShopWebAPI.Controllers
         public async Task<ActionResult> getById(int id ) => 
             await _productsService.GetProductsById(id) is var product && product == null ? NotFound() : Ok(product);
 
+        [HttpPost]
+
+        public async Task<ActionResult> addProduct(ShopWebInsertDTO product) =>
+            await _productsService.AddProduct(product) is var addProduct && addProduct == null ? NotFound() : Ok(product);
+
+
 
     }
 }
