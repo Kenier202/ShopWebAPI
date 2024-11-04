@@ -1,4 +1,5 @@
-﻿using ShopWebAPI.DTOs;
+﻿using AutoMapper;
+using ShopWebAPI.DTOs;
 using ShopWebAPI.Interfaces;
 using ShopWebAPI.Models;
 using ShopWebAPI.Repositories;
@@ -8,9 +9,11 @@ namespace ShopWebAPI.Services
     public class ProductsService : IProductsService
     {
         IProductsRepository<Products> _repositoryProducts;
-        public ProductsService (IProductsRepository<Products> repositoryProducts)
+        private IMapper _mapper;
+        public ProductsService (IProductsRepository<Products> repositoryProducts, IMapper mapper)
         {
             _repositoryProducts = repositoryProducts;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<Products>> GetProducts()
@@ -40,19 +43,7 @@ namespace ShopWebAPI.Services
 
             if (product == null) return null;
 
-            var productDTO = new ShopWebDTO() 
-            {
-                IdProduct = product.IdProduct,
-                ProductName = product.ProductName,
-                ProductPrice = product.ProductPrice,
-                ProductCategory = product.ProductCategoryId,
-                ProductDescription = product.ProductDescription,
-                StockQuantity = product.StockQuantity,
-                StateProduct = product.StateProductId,
-                CreatedDate = product.CreatedDate,
-                ModifiedDate = product.ModifiedDate,
-            };
-
+            var productDTO = _mapper.Map<ShopWebDTO>(product);
 
             return productDTO;
         }
@@ -62,40 +53,18 @@ namespace ShopWebAPI.Services
         {
             if (product == null) return null;
 
-            var productDb = new Products()
-            {
-                ProductName = product.ProductName,
-                ProductPrice = product.ProductPrice,
-                ProductDescription = product.ProductDescription,
-                StockQuantity = product.StockQuantity,
-                StateProductId = product.StateProductId,
-                CreatedDate = DateTime.Now,
-                ModifiedDate= DateTime.Now,
-                ProductCategoryId = Convert.ToInt32(product.ProductCategoryId)
-            };
+            var productDb = _mapper.Map<Products>(product);
 
             await _repositoryProducts.AddProduct(productDb);
 
-            var productShopWebDTO = new ShopWebDTO()
-            { 
-                IdProduct = productDb.IdProduct,
-                ProductName = productDb.ProductName,
-                ProductPrice = productDb.ProductPrice,
-                ProductCategory = productDb.ProductCategoryId,
-                ProductDescription = productDb.ProductDescription,
-                StockQuantity = productDb.StockQuantity,
-                CreatedDate = productDb.CreatedDate,
-                StateProduct = productDb.StateProductId,
-                ModifiedDate = productDb.ModifiedDate,
-            };
-            return productShopWebDTO;
+            var productShopWebDTO = _mapper.Map<ShopWebDTO>(product);
 
+            return productShopWebDTO;
         }
 
         public async Task<Products> DeleteProduct(int id)
         {
             var product = await _repositoryProducts.GetProductById(id);
-
 
             await _repositoryProducts.DeleteProduct(product);
 
@@ -104,17 +73,7 @@ namespace ShopWebAPI.Services
 
         public async Task<ShopWebUpdateDTO> UpdateProduct(ShopWebUpdateDTO productUpdate)
         {
-            var product = new Products()
-            {
-                IdProduct = productUpdate.IdProduct,
-                ProductName = productUpdate.ProductName,
-                ProductPrice = productUpdate.ProductPrice,
-                ProductCategoryId = productUpdate.ProductCategoryid,
-                ProductDescription = productUpdate.ProductDescription,
-                StockQuantity = productUpdate.StockQuantity,
-                ModifiedDate = DateTime.Now,
-                StateProductId = productUpdate.StateProductid
-            };
+            var product = _mapper.Map<Products>(productUpdate);
 
             await _repositoryProducts.UpdateProduct(product);
 

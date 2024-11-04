@@ -19,6 +19,9 @@ builder.Services.AddScoped<IProductsRepository<Products>,RepositoryProducts>();
 //RepositoryProducsService
 builder.Services.AddScoped<IProductsService,ProductsService>();
 
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
  builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
