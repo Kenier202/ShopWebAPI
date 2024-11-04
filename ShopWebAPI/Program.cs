@@ -19,7 +19,13 @@ builder.Services.AddScoped<IProductsRepository<Products>,RepositoryProducts>();
 //RepositoryProducsService
 builder.Services.AddScoped<IProductsService,ProductsService>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+ 
+    options.JsonSerializerOptions.ReferenceHandler = null;
+    options.JsonSerializerOptions.MaxDepth = 64; 
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
