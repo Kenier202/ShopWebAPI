@@ -39,13 +39,44 @@ namespace ShopWebAPI.Services
                 ModifiedDate = product.ModifiedDate,
             };
 
+
             return productDTO;
         }
 
 
-        public Task<ShopWebDTO> AddProduct(ShopWebInsertDTO product)
+        public async Task<ShopWebDTO> AddProduct(ShopWebInsertDTO product)
         {
-            throw new NotImplementedException();
+            if (product == null) return null;
+
+            var productDb = new Products()
+            {
+                ProductName = product.ProductName,
+                ProductPrice = product.ProductPrice,
+                ProductCategory = product.ProductCategory,
+                ProductDescription = product.ProductDescription,
+                StockQuantity = product.StockQuantity,
+                StateProductId = product.IsActive,
+                CreatedDate = DateTime.Now,
+                ModifiedDate= DateTime.Now,
+                ProductCategoryId = product.ProductCategory
+            };
+
+            await _repositoryProducts.AddProduct(productDb);
+
+            var productShopWebDTO = new ShopWebDTO()
+            { 
+                IdProduct = productDb.IdProduct,
+                ProductName = productDb.ProductName,
+                ProductPrice = productDb.ProductPrice,
+                ProductCategory = productDb.ProductCategory,
+                ProductDescription = productDb.ProductDescription,
+                StockQuantity = productDb.StockQuantity,
+                CreatedDate = productDb.CreatedDate,
+                IsActive = 1,
+                ModifiedDate = productDb.ModifiedDate,
+            };
+            return productShopWebDTO;
+
         }
 
         public Task<Products> DeleteProduct(int id)

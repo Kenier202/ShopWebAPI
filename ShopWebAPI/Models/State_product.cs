@@ -9,7 +9,7 @@ namespace ShopWebAPI.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public String Estado { get; set; }
+        public string Estado { get; set; }
         public ICollection<Products> Products { get; set; }
 
     }

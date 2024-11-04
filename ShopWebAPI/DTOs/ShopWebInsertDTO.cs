@@ -7,6 +7,6 @@
         public string ProductCategory { get; set; }
         public string ProductDescription { get; set; }
         public int StockQuantity { get; set; }
-        public bool IsActive { get; set; }
+        public int IsActive { get; set; }
     }
 }
