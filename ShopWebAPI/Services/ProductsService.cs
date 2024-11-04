@@ -92,14 +92,34 @@ namespace ShopWebAPI.Services
 
         }
 
-        public Task<Products> DeleteProduct(int id)
+        public async Task<Products> DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            var product = await _repositoryProducts.GetProductById(id);
+
+
+            await _repositoryProducts.DeleteProduct(product);
+
+            return product;
         }
 
-        public Task<ShopWebDTO> UpdateProduct(ShopWebInsertDTO product)
+        public async Task<ShopWebUpdateDTO> UpdateProduct(ShopWebUpdateDTO productUpdate)
         {
-            throw new NotImplementedException();
+            var product = new Products()
+            {
+                IdProduct = productUpdate.IdProduct,
+                ProductName = productUpdate.ProductName,
+                ProductPrice = productUpdate.ProductPrice,
+                ProductCategoryId = productUpdate.ProductCategoryid,
+                ProductDescription = productUpdate.ProductDescription,
+                StockQuantity = productUpdate.StockQuantity,
+                ModifiedDate = DateTime.Now,
+                StateProductId = productUpdate.StateProductid
+            };
+
+            await _repositoryProducts.UpdateProduct(product);
+
+            return productUpdate;
+
         }
     }
 }
