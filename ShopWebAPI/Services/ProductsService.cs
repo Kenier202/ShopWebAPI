@@ -18,7 +18,18 @@ namespace ShopWebAPI.Services
             var products = await _repositoryProducts.getAllProducts();
             if (products == null) return null ;
 
-            return products;
+            return products.Select(p => new Products
+            {
+                IdProduct = p.IdProduct,
+                ProductName = p.ProductName,
+                ProductPrice = p.ProductPrice,
+                ProductCategoryId = p.ProductCategoryId,
+                ProductDescription = p.ProductDescription,
+                StockQuantity = p.StockQuantity,
+                StateProductId = p.StateProductId,
+                CreatedDate = p.CreatedDate,
+                ModifiedDate = p.ModifiedDate
+            });
         }
 
         public async Task<ShopWebDTO> GetProductsById(int id)

@@ -13,10 +13,8 @@ namespace ShopWebAPI.Models
         public string ProductName { get; set; }
         public double ProductPrice { get; set; }
 
-        // Cambiar ProductCategoryId a int para que coincida con el Id de ProductCategory
         public int ProductCategoryId { get; set; }
 
-        // Definir ProductCategory como una propiedad de navegación a la entidad relacionada
         [ForeignKey(nameof(ProductCategoryId))]
         public ProductCategory ProductCategory { get; set; }
 
@@ -25,7 +23,6 @@ namespace ShopWebAPI.Models
 
         public int StateProductId { get; set; }
 
-        // Definir StateProduct como una propiedad de navegación a la entidad relacionada
         [ForeignKey(nameof(StateProductId))]
         public State_product StateProduct { get; set; }
 
