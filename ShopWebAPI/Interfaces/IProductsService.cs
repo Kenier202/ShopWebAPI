@@ -12,7 +12,7 @@ namespace ShopWebAPI.Interfaces
         //add product
         Task<ShopWebDTO> AddProduct (ShopWebInsertDTO product);
         //update product
-        Task<ShopWebDTO> UpdateProduct(ShopWebInsertDTO product);
+        Task<ShopWebUpdateDTO> UpdateProduct(ShopWebUpdateDTO product);
         //delete product
         Task<Products> DeleteProduct (int id);
     }
