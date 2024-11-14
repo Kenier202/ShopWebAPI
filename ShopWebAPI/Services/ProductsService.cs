@@ -55,6 +55,9 @@ namespace ShopWebAPI.Services
 
             var productDb = _mapper.Map<Products>(product);
 
+            productDb.CreatedDate = DateTime.UtcNow;
+            productDb.ModifiedDate = DateTime.UtcNow;
+
             await _repositoryProducts.AddProduct(productDb);
 
             var productShopWebDTO = _mapper.Map<ShopWebDTO>(productDb);
