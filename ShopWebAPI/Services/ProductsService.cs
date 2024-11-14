@@ -57,7 +57,7 @@ namespace ShopWebAPI.Services
 
             await _repositoryProducts.AddProduct(productDb);
 
-            var productShopWebDTO = _mapper.Map<ShopWebDTO>(product);
+            var productShopWebDTO = _mapper.Map<ShopWebDTO>(productDb);
 
             return productShopWebDTO;
         }
